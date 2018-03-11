@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>记一次重构经历 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="原则：重构必须考虑清楚影响范围 起因：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。 过程：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#16">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次重构经历">
+<meta property="og:url" content="http://yoursite.com/2018/03/11/记一次重构经历/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="原则：重构必须考虑清楚影响范围 起因：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。 过程：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#16">
+<meta property="og:updated_time" content="2018-03-11T10:41:37.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="记一次重构经历">
+<meta name="twitter:description" content="原则：重构必须考虑清楚影响范围 起因：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。 过程：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#16">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,9 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-记一次重构经历" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-记一次重构经历" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/11/记一次重构经历/" class="article-date">
   <time datetime="2018-03-11T10:41:25.000Z" itemprop="datePublished">2018-03-11</time>
@@ -74,8 +76,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/11/记一次重构经历/">记一次重构经历</a>
+    <h1 class="article-title" itemprop="name">
+      记一次重构经历
     </h1>
   
 
@@ -99,10 +101,9 @@
     </footer>
   </div>
   
-</article>
-
-
+    
   
+</article>
 
 </section>
         
