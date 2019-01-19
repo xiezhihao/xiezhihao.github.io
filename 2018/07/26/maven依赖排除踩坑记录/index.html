@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="原则：重构必须考虑清楚影响范围 起因：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。 过程：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#16">
+<meta name="description" content="现象我们的业务系统A，依赖于业务系统B,B系统依赖 思考总结">
 <meta name="keywords" content="maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven依赖排除踩坑记录">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/maven依赖排除踩坑记录/index.html">
 <meta property="og:site_name" content="学而不思则惘">
-<meta property="og:description" content="原则：重构必须考虑清楚影响范围 起因：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。 过程：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#16">
+<meta property="og:description" content="现象我们的业务系统A，依赖于业务系统B,B系统依赖 思考总结">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-26T14:05:35.922Z">
+<meta property="og:updated_time" content="2018-07-26T15:43:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="maven依赖排除踩坑记录">
-<meta name="twitter:description" content="原则：重构必须考虑清楚影响范围 起因：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。 过程：&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#16">
+<meta name="twitter:description" content="现象我们的业务系统A，依赖于业务系统B,B系统依赖 思考总结">
 
 
 
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -191,6 +191,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -236,7 +256,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/maven依赖排除踩坑记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="谢志豪">
+      <meta itemprop="name" content="helfmxie">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -273,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -300,13 +342,8 @@
       
 
       
-        <h3 id="原则：重构必须考虑清楚影响范围"><a href="#原则：重构必须考虑清楚影响范围" class="headerlink" title="原则：重构必须考虑清楚影响范围"></a>原则：重构必须考虑清楚影响范围</h3><blockquote>
-<p><strong>起因</strong>：<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;最近因为公司内部对各个业务线的用户业务进行统一剥离，形成用户中心，所有用户相关的业务和数据都落地到用户中心，各个业务线以RPC的的形式依赖用户中心的服务。</p>
-<p><strong>过程</strong>：<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;这样我们业务线就需要做两件事：<strong>1.将数据库中用户相关的数据全部迁移到用户中心。2.代码重构</strong>，将工程中调用用户服务的相关代码重构，改为调用用户中心的用户服务。整个用户中心迁移经历了比较长的时间，工作量比较大，涉及到比较多的业务查询修改。<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;我负责的工作是对迁移后的app进行回归测试，确保迁移过程不会造成bug的产生。</p>
-<p><strong>结果</strong>：<br>因为我的疏忽，造成了两个bug没有被测试出来。</p>
-<p><strong>总结改进</strong>：<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<br>这两个bug的产生的原因都是因为我错误地估计了回归测试的范围，我的想法是：用户中心迁移影响的是用户相关的功能，所以我只回归测试了与用户相关的功能，比如注册，登录，修改用户信息，等等，但是一些间接依赖用户数据的逻辑并没有覆盖到，比如查询用户登录行为，这个看似是查询用户行为，其实也会影响其它的功能。<br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<strong>在重构或者对代码进行较大改造之前，一定要事先确定好影响范围，继而确定回归测试的范围，这样在改造完成的时候，对确定的范围进行回归测试，这样才能减少改造过程造成的bug</strong>。</p>
-</blockquote>
-
+        <h3 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h3><pre><code>我们的业务系统A，依赖于业务系统B,B系统依赖
+</code></pre><h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
       
     </div>
     
@@ -410,7 +447,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">谢志豪</p>
+              <p class="site-author-name" itemprop="name">helfmxie</p>
               <p class="site-description motion-element" itemprop="description">随便写写，总结总结，发泄发泄</p>
           </div>
 
@@ -432,7 +469,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -442,10 +479,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -453,6 +490,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xiezhihao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:13018975650@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -476,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原则：重构必须考虑清楚影响范围"><span class="nav-number">1.</span> <span class="nav-text">原则：重构必须考虑清楚影响范围</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#现象"><span class="nav-number">1.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思考"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -496,11 +549,11 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">谢志豪</span>
+  <span class="author" itemprop="copyrightHolder">helfmxie</span>
 
   
 </div>
@@ -514,7 +567,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -613,6 +666,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
